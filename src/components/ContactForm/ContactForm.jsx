@@ -1,10 +1,12 @@
 import { Component } from 'react';
 
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
+
 export default class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
+  state = INITIAL_STATE;
 
   handleInput = e => {
     this.setState({
@@ -15,6 +17,7 @@ export default class ContactForm extends Component {
   handleSubmitForm = e => {
     e.preventDefault();
     this.props.createContacts(this.state);
+    this.setState(INITIAL_STATE);
     console.log(this.state);
   };
 

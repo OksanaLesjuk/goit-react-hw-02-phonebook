@@ -2,6 +2,7 @@ import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import { nanoid } from 'nanoid';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -15,14 +16,20 @@ export class App extends Component {
   };
 
   createContacts = dataForm => {
+    const existingContact = this.state.contacts.find(
+      contact => contact.name === dataForm.name
+    );
+
+    if (existingContact) {
+      return alert(`${dataForm.name} is already in contacts`);
+    }
+    const newContact = {
+      ...dataForm,
+      id: nanoid(),
+    };
+
     this.setState(prev => ({
-      contacts: [
-        ...prev.contacts,
-        {
-          ...dataForm,
-          id: nanoid(),
-        },
-      ],
+      contacts: [newContact, ...prev.contacts],
     }));
   };
 
@@ -36,7 +43,7 @@ export class App extends Component {
 
           <h2>Contacts</h2>
 
-          {/* <Filter ... /> */}
+          <Filter />
           <ContactList contacts={this.state.contacts} />
         </div>
       </>

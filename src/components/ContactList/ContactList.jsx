@@ -4,11 +4,12 @@ import { Component } from 'react';
 export default class ContactList extends Component {
   render() {
     const { contacts } = this.props;
-
-    return contacts.map(contact => (
-      <ul key={contact.id}>
-        <Contact contact={contact} />
+    return (
+      <ul>
+        {contacts.map(contact => (
+          <Contact contact={contact} key={contact.id} />
+        ))}
       </ul>
-    ));
+    );
   }
 }

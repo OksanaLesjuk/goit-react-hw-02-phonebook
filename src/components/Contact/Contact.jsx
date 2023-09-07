@@ -4,7 +4,7 @@ const Contact = ({ contact }) => {
       <li>
         {contact.name}:{contact.number}
       </li>
-      <button>Delete</button>
+      <button type="button">Delete</button>
     </div>
   );
 };
