@@ -13,6 +13,8 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    // filteredContacts:[]
+    filter: '',
   };
 
   createContacts = dataForm => {
@@ -33,6 +35,14 @@ export class App extends Component {
     }));
   };
 
+  filterContacts = queryInput => {
+    this.setState(prev => ({
+      filter: prev.contacts.filter(el =>
+        el.name.toLowerCase().includes(queryInput.toLowerCase())
+      ),
+    }));
+  };
+
   render() {
     console.log(this.state);
     return (
@@ -43,8 +53,11 @@ export class App extends Component {
 
           <h2>Contacts</h2>
 
-          <Filter />
-          <ContactList contacts={this.state.contacts} />
+          <Filter filterContacts={this.filterContacts} />
+          <ContactList
+            contacts={this.state.contacts}
+            filter={this.state.filter}
+          />
         </div>
       </>
     );
