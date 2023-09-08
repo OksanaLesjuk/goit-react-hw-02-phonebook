@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 
 export default class Filter extends Component {
   state = { filterQuery: '' };
-  handleFilter = ({ target: { name, value } }) => {
-    this.props.filterContacts(value);
-    this.setState({
-      [name]: value,
-    });
+
+  handleFilter = ({ target: { value } }) => {
+    this.setState(
+      {
+        filterQuery: value,
+      },
+      () => {
+        this.props.filterContacts(this.state.filterQuery);
+      }
+    );
   };
 
   render() {
@@ -15,7 +20,7 @@ export default class Filter extends Component {
         <p>Find contacts by name</p>
         <input
           onChange={this.handleFilter}
-          value={this.state.filter}
+          value={this.state.filterQuery}
           type="text"
           name="filterQuery"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"

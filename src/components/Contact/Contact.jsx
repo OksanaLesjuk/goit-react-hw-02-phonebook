@@ -1,10 +1,12 @@
-const Contact = ({ contact }) => {
+const Contact = ({ contact, deleteContacts }) => {
   return (
     <div>
       <li>
         {contact.name}:{contact.number}
       </li>
-      <button type="button">Delete</button>
+      <button onClick={() => deleteContacts(contact.id)} type="button">
+        Delete
+      </button>
     </div>
   );
 };

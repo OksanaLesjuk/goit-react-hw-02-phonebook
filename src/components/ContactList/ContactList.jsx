@@ -3,11 +3,15 @@ import { Component } from 'react';
 
 export default class ContactList extends Component {
   render() {
-    const { filter, contacts } = this.props;
+    const { filter, contacts, deleteContacts } = this.props;
     return (
       <ul>
         {(filter !== '' ? filter : contacts).map(contact => (
-          <Contact contact={contact} key={contact.id} />
+          <Contact
+            deleteContacts={deleteContacts}
+            contact={contact}
+            key={contact.id}
+          />
         ))}
       </ul>
     );
