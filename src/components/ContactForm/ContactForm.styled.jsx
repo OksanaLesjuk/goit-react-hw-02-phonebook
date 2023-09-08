@@ -18,10 +18,25 @@ export const Input = styled('input')(() => {
     display: 'flex',
     flexDirection: 'column',
     width: '200px',
-    padding: '4px 8px',
+    padding: '8px 16px',
     marginTop: '8px',
     marginBottom: '24px',
     '&:focus': {
+      outline: 'none',
+      borderColor: 'blue',
+    },
+  };
+});
+
+export const ContactsFormButton = styled('button')(() => {
+  return {
+    display: 'block',
+
+    width: '160px',
+    padding: '8px 10px',
+    // marginTop: '8px',
+    // marginBottom: '24px',
+    '&:hover': {
       outline: 'none',
       borderColor: 'blue',
     },

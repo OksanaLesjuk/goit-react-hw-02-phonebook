@@ -1,13 +1,15 @@
+import { ContactsItem, DeleteButton } from './Contact.styled';
+
 const Contact = ({ contact, deleteContacts }) => {
   return (
-    <div>
+    <ContactsItem>
       <li>
-        {contact.name}:{contact.number}
+        {contact.name}: {contact.number}
       </li>
-      <button onClick={() => deleteContacts(contact.id)} type="button">
+      <DeleteButton onClick={() => deleteContacts(contact.id)} type="button">
         Delete
-      </button>
-    </div>
+      </DeleteButton>
+    </ContactsItem>
   );
 };
 

@@ -1,32 +1,20 @@
-import React, { Component } from 'react';
+import { Input } from 'components/ContactForm/ContactForm.styled';
+import { FilterMessage } from './Filter.styled';
 
-export default class Filter extends Component {
-  state = { filterQuery: '' };
+const Filter = ({ handleFilter, filter }) => {
+  return (
+    <div>
+      <FilterMessage>Find contacts by name</FilterMessage>
+      <Input
+        onChange={handleFilter}
+        value={filter}
+        type="text"
+        name="filterQuery"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        placeholder="Search contacts..."
+      />
+    </div>
+  );
+};
 
-  handleFilter = ({ target: { value } }) => {
-    this.setState(
-      {
-        filterQuery: value,
-      },
-      () => {
-        this.props.filterContacts(this.state.filterQuery);
-      }
-    );
-  };
-
-  render() {
-    return (
-      <div>
-        <p>Find contacts by name</p>
-        <input
-          onChange={this.handleFilter}
-          value={this.state.filterQuery}
-          type="text"
-          name="filterQuery"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        />
-      </div>
-    );
-  }
-}
+export default Filter;

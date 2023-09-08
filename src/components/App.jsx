@@ -35,15 +35,10 @@ export class App extends Component {
     }));
   };
 
-  filterContacts = queryInput => {
-    this.setState(prev => ({
-      filter:
-        queryInput !== ''
-          ? prev.contacts.filter(el =>
-              el.name.toLowerCase().includes(queryInput.toLowerCase())
-            )
-          : '',
-    }));
+  handleFilter = ({ target: { value } }) => {
+    this.setState({
+      filter: value,
+    });
   };
 
   deleteContacts = id => {
@@ -53,7 +48,12 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    const { contacts, filter } = this.state;
+
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
     return (
       <>
         <div>
@@ -62,11 +62,11 @@ export class App extends Component {
 
           <h2>Contacts</h2>
 
-          <Filter filterContacts={this.filterContacts} />
+          <Filter handleFilter={this.handleFilter} filter={this.state.filter} />
           <ContactList
             contacts={this.state.contacts}
-            filter={this.state.filter}
             deleteContacts={this.deleteContacts}
+            filteredContacts={filteredContacts}
           />
         </div>
       </>
