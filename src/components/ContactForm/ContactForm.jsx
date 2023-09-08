@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Form, Input } from './ContactForm.styled';
 
 const INITIAL_STATE = {
   name: '',
@@ -23,10 +24,10 @@ export default class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmitForm}>
+      <Form onSubmit={this.handleSubmitForm}>
         <label>
           Name
-          <input
+          <Input
             onChange={this.handleInput}
             value={this.state.name}
             type="text"
@@ -38,7 +39,7 @@ export default class ContactForm extends Component {
         </label>
         <label>
           Number
-          <input
+          <Input
             onChange={this.handleInput}
             value={this.state.number}
             type="tel"
@@ -49,7 +50,7 @@ export default class ContactForm extends Component {
           />
         </label>
         <button type="submit"> Add contact</button>
-      </form>
+      </Form>
     );
   }
 }
